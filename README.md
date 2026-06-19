@@ -26,13 +26,9 @@
 
 <br/>
 
-> **CrimeSense AI** is a full-stack crime intelligence platform built for law enforcement agencies.  
-> It combines real-time geospatial mapping, AI-driven predictions, and NCRB data analytics  
-> into a unified command center — purpose-built for Indian law enforcement.
+> CrimeSense AI is a full-stack AI-powered crime intelligence platform designed for law enforcement agencies. It integrates geospatial mapping, machine learning, and NCRB data analytics into a unified command center for predictive policing.
 
 <br/>
-
-[Overview](#-overview) • [Features](#-features) • [Tech Stack](#-tech-stack) • [Getting Started](#-getting-started) • [API Reference](#-api-reference) • [Project Structure](#-project-structure) • [Data Sources](#-data-sources)
 
 </div>
 
@@ -40,74 +36,88 @@
 
 ## 📌 Overview
 
-CrimeSense AI addresses a critical gap in law enforcement tooling — the lack of a unified, data-driven platform for crime monitoring and prediction. By integrating **41,732+ real NCRB records** across 29 Indian cities with machine learning models, it enables officers to:
+CrimeSense AI addresses the lack of a unified data-driven system for crime monitoring and prediction.
 
-- Identify crime hotspots using DBSCAN spatial clustering
-- Predict next-month crime volumes and peak risk hours
-- Monitor live alerts for anomalies and crime spikes
-- Upload and analyze field data in bulk (CSV, JSON, Excel, PDF)
+It uses **41,732+ NCRB records across 29 Indian cities** to provide:
+- Crime hotspot detection
+- Future crime prediction
+- Real-time alert system
+- Interactive crime intelligence dashboard
+
+---
+
+## 🎯 Problem Statement
+
+Law enforcement systems lack:
+- Predictive crime analysis
+- Unified dashboard for monitoring
+- AI-based hotspot detection
+- Data-driven decision support
+
+---
+
+## 💡 Solution
+
+- AI-powered crime prediction engine  
+- DBSCAN-based hotspot clustering  
+- Interactive geospatial crime mapping  
+- Smart alert system for anomaly detection  
+- Centralized police command dashboard  
 
 ---
 
 ## ✨ Features
 
-### 🛡️ Officer Authentication
-- Role-based access control with secure JWT session management
-- Persistent login state with one-click logout and session cleanup
-- Pre-configured officer accounts for immediate access
-
-### 🗺️ Interactive Crime Map
-- Multi-style map views: **Dark**, **Light**, and **Satellite**
-- Severity-coded circle markers with detailed incident popups
-- **DBSCAN hotspot clustering** with automated risk scoring
-- Per-location risk zone overlays for patrol planning
-- Real-time filtering by crime type, severity, date, and location
-- **Nominatim-powered geocoding** — search any Indian city, village, or state
+### 🗺️ Crime Map Intelligence
+- Interactive Leaflet map
+- Crime hotspot visualization
+- Risk zone overlays
+- Real-time filtering system
 
 ### 📊 Analytics Dashboard
-- Summary statistics: total incidents, dominant crime type, risk score
-- Monthly trend charts with per-category crime breakdown
-- Crime category distribution via pie/donut chart
-- Severity distribution bar chart (Critical / High / Medium / Low)
-- Top high-risk locations leaderboard with trend direction indicators
+- Crime trends over time
+- Category-wise analysis
+- Severity distribution
+- High-risk location ranking
 
-### 🧠 AI Predictions Engine
-- Next-month incident volume forecasting
-- Peak crime hour and day-of-week prediction
-- Crime growth rate estimation per category
-- Per-crime probability analysis with radar visualization
-- High-risk zone identification for upcoming periods
-- Time-window based risk assessment
+### 🧠 AI Prediction Engine
+- Next-month crime forecasting
+- Peak crime hour prediction
+- Risk analysis per region
+- Trend estimation
 
 ### 🔔 Smart Alert System
-- Automatic detection of crime spikes and statistical anomalies
-- Severity-coded notifications with visual unread indicators
-- Filterable alert history by severity and crime type
+- Anomaly detection
+- Crime spike alerts
+- Severity-based notifications
 
-### 📁 Data Management
-- Bulk upload support: **CSV, JSON, PDF, and Excel**
-- Manual incident entry via structured form
-- Covers **21 crime types** across **29 Indian cities**
-- Server-side file parsing with full validation
+### 📁 Data System
+- CSV / JSON / Excel / PDF upload
+- NCRB dataset (41,732+ records)
+- Multi-city crime coverage
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer | Technology | Purpose |
-|---|---|---|
-| **Frontend Framework** | Next.js 16 + React 19 | App routing, SSR, component architecture |
-| **Language** | TypeScript | Type-safe frontend development |
-| **Styling** | Tailwind CSS 4 | Utility-first responsive UI |
-| **Maps** | Leaflet.js | Interactive geospatial rendering |
-| **Charts** | Recharts | Analytics visualizations |
-| **Backend Framework** | FastAPI (Python) | REST API server with async support |
-| **Database** | SQLite + SQLAlchemy | Persistent data storage and ORM |
-| **ML / Analytics** | scikit-learn, NumPy, Pandas | DBSCAN clustering, predictions, analytics |
-| **Geocoding** | OpenStreetMap Nominatim | Indian location search and geocoding |
-| **Auth** | JWT Tokens | Secure officer session management |
+Frontend: Next.js 16, React 19, TypeScript  
+Backend: FastAPI (Python)  
+Database: SQLite + SQLAlchemy  
+ML: Scikit-learn, Pandas, NumPy  
+Maps: Leaflet.js  
+Charts: Recharts  
+Auth: JWT  
+Geocoding: OpenStreetMap Nominatim  
 
 ---
+
+## ⚙️ Getting Started
+
+### Backend Setup
+```bash
+cd backend
+pip install -r requirements.txt
+uvicorn main:app --reload
 
 ## ⚡ Getting Started
 
@@ -255,44 +265,11 @@ npm run dev
 ```
 CrimeSense-AI/
 │
-├── backend/                        # Python FastAPI server
-│   ├── main.py                     # Entry point & all API endpoints
-│   ├── database.py                 # SQLAlchemy configuration
-│   ├── models.py                   # ORM models (CrimeIncident, CrimeStat)
-│   ├── ai_engine.py                # Analytics, predictions & alerts engine
-│   ├── seed_data.py                # Demo data seeder (500 records)
-│   ├── import_dataset.py           # NCRB dataset importer
-│   ├── requirements.txt            # Python dependencies
-│   └── crime_data.db               # SQLite database
+├── backend/ 
 │
 ├── frontend/                       # Next.js web application
-│   └── src/
-│       ├── app/                    # Next.js App Router pages
-│       │   ├── page.tsx            # Dashboard / Command Center
-│       │   ├── login/              # Officer authentication
-│       │   ├── map/                # Crime intelligence map
-│       │   ├── analytics/          # Deep analytics
-│       │   ├── predictions/        # AI predictions
-│       │   ├── alerts/             # Alert center
-│       │   ├── crime-stats/        # NCRB statistics
-│       │   └── upload/             # Data upload & manual entry
-│       ├── components/             # Reusable UI components
-│       │   ├── Sidebar.tsx
-│       │   ├── StatsCard.tsx
-│       │   ├── CrimeTrendChart.tsx
-│       │   ├── CategoryPieChart.tsx
-│       │   ├── TopLocations.tsx
-│       │   ├── AlertsPanel.tsx
-│       │   ├── CrimeHeatmap.tsx
-│       │   └── LazyMap.tsx
-│       └── lib/                    # Core libraries
-│           ├── api.ts              # API client & TypeScript interfaces
-│           ├── auth.tsx            # Auth context & provider
-│           └── utils.ts            # Utility functions
 │
 ├── dataset/                        # Crime data files
-│   ├── indian-crimes-from-jan-to-aug-2025.csv
-│   └── data.xltx
 │
 ├── start.ps1                       # PowerShell launcher
 └── README.md
