@@ -12,7 +12,7 @@ async function fetchAPI<T>(endpoint: string, timeoutMs = 30000): Promise<T> {
   }
 }
 
-export async function waitForBackend(maxRetries = 10, delayMs = 2000): Promise<boolean> {
+export async function waitForBackend(maxRetries = 15, delayMs = 1000): Promise<boolean> {
   for (let i = 0; i < maxRetries; i++) {
     try {
       const res = await fetch(`${API_BASE}/health`, { signal: AbortSignal.timeout(5000) });

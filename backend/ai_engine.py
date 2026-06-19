@@ -9,7 +9,7 @@ from sklearn.cluster import DBSCAN
 from sklearn.preprocessing import StandardScaler
 
 
-MAX_ANALYTICS_RECORDS = 50000
+MAX_ANALYTICS_RECORDS = 10000
 
 FAKE_LOCATIONS = [
     "Sector 14 Market", "Sector 18 Plaza", "Old Town", "Industrial Area",
@@ -76,7 +76,7 @@ class CrimeAnalysisEngine:
         else:
             trend = "stable"
 
-        incidents_sample = self.get_recent_incidents(days=None, limit=10000)
+        incidents_sample = self.get_recent_incidents(days=365, limit=5000)
         crime_type_counts = defaultdict(int)
         location_counts = defaultdict(int)
         total_severity = 0
@@ -104,7 +104,7 @@ class CrimeAnalysisEngine:
         }
 
     def get_trend_data(self) -> Dict[str, Any]:
-        incidents = self.get_recent_incidents(days=None, limit=10000)
+        incidents = self.get_recent_incidents(days=365, limit=5000)
         now = datetime.now()
 
         monthly = defaultdict(int)
@@ -155,13 +155,9 @@ class CrimeAnalysisEngine:
         ]
 
     def detect_hotspots(self) -> Dict[str, Any]:
-        incidents = self.get_recent_incidents(days=None, limit=20000)
+        incidents = self.get_recent_incidents(days=365, limit=5000)
         if len(incidents) < 5:
             return {"clusters": [], "centroids": []}
-
-        if len(incidents) > 10000:
-            import random
-            incidents = random.sample(incidents, 10000)
 
         coords = np.array([[inc.latitude, inc.longitude] for inc in incidents])
         scaler = StandardScaler()
