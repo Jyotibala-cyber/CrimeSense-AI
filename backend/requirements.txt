@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+sqlalchemy
+numpy
+pandas
+scikit-learn
+pydantic
+python-dateutil
+openpyxl
+PyMuPDF

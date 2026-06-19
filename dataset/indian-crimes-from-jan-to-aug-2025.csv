@@ -1,0 +1,11 @@
+Law Category,Crime + Legal Section,Reason,Cases (Jan-Aug 2025),Cases (Aug 2024),Cases (Jul 2025),Cases (Aug 2025)
+Violent Crime,Murder (IPC 302),Criminal Homicide,28500,3200,3400,3100
+Violent Crime,Attempt to Murder (IPC 307),Attempted Homicide,32500,3800,4000,3700
+Violent Crime,Rape (IPC 376),Sexual Assault,24800,2900,3100,2800
+Property Crime,Burglary (IPC 454/455/457/458),House Break-In,42800,5100,5300,4900
+Property Crime,Theft (IPC 379),Petty Theft,82300,9800,10200,9500
+Property Crime,Vehicle Theft (IPC 379),Stolen Vehicles,35200,4100,4300,4000
+Cyber Crime,Cyber Fraud (IT Act 66/66C/66D),Online Fraud,45200,5400,5700,5200
+Cyber Crime,Identity Theft (IT Act 66C),Identity Fraud,18200,2100,2300,2000
+Drug Offense,NDPS Act,Illegal Drug Possession,22400,2600,2800,2500
+Financial Crime,Cheating (IPC 420),Financial Fraud,38600,4500,4700,4400
