@@ -1,5 +1,6 @@
 fastapi
-uvicorn
+uvicorn[standard]
+gunicorn
 sqlalchemy
 numpy
 pandas
@@ -8,3 +9,4 @@ pydantic
 python-dateutil
 openpyxl
 PyMuPDF
+requests

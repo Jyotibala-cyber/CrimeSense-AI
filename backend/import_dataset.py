@@ -4,8 +4,11 @@ from datetime import datetime
 from database import SessionLocal, engine
 from models import Base, CrimeStat, CrimeIncident
 
-CSV_PATH = r"C:\Users\HP pci\Desktop\crimsense-ai\dataset\indian-crimes-from-jan-to-aug-2025.csv"
-XLTX_PATH = r"C:\Users\HP pci\Desktop\crimsense-ai\dataset\data.xltx"
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+CSV_PATH = os.path.join(BASE_DIR, "..", "dataset", "indian-crimes-from-jan-to-aug-2025.csv")
+XLTX_PATH = os.path.join(BASE_DIR, "..", "dataset", "data.xltx")
 
 CITY_COORDS = {
     "Agra": (27.1767, 78.0081), "Ahmedabad": (23.0225, 72.5714),
@@ -42,6 +45,10 @@ def import_csv_stats():
     if db.query(CrimeStat).limit(1).first() is not None:
         db.close()
         return
+    if not os.path.exists(CSV_PATH):
+        print(f"Skipping CSV import: file not found at {CSV_PATH}")
+        db.close()
+        return
     df = pd.read_csv(CSV_PATH).fillna("")
     records = []
     for _, row in df.iterrows():
@@ -75,6 +82,10 @@ def import_xltx_incidents():
         CrimeIncident.crime_type.in_(xltx_crime_types)
     ).limit(1).first() is not None
     if has_xltx:
+        db.close()
+        return
+    if not os.path.exists(XLTX_PATH):
+        print(f"Skipping XLTX import: file not found at {XLTX_PATH}")
         db.close()
         return
 
